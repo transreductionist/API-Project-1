@@ -1,0 +1,62 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.1.0
+    hooks:
+    -   id: trailing-whitespace
+        language_version: python3
+    -   id: end-of-file-fixer
+        language_version: python3
+    -   id: check-docstring-first
+        language_version: python3
+    -   id: check-json
+        language_version: python3
+    -   id: check-added-large-files
+        language_version: python3
+    -   id: check-yaml
+        language_version: python3
+    -   id: debug-statements
+        language_version: python3
+    -   id: detect-private-key
+        language_version: python3
+    -   id: name-tests-test
+        language_version: python3
+        args: ['--django']
+        # Exclude test.helper files from name-tests-test otherwise this check fails.
+        exclude: >
+            (?x)^(tests/helpers/*.*)$
+    -   id: requirements-txt-fixer
+        language_version: python3
+    -   id: flake8
+        language_version: python3
+        exclude:
+          # Has many dictionaries with "null" values.
+          mock_ultsys_user_data.py
+        # Yes, we need the '' around the --ignore.
+        args: [--max-line-length=120, '--ignore=E201,E202']
+-   repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.6
+    hooks:
+    -   id: forbid-crlf
+        language_version: python3
+    -   id: remove-crlf
+        language_version: python3
+    -   id: forbid-tabs
+        language_version: python3
+    -   id: remove-tabs
+        language_version: python3
+-   repo: https://github.com/asottile/reorder_python_imports
+    rev: v1.3.3
+    hooks:
+    -   id: reorder-python-imports
+        language_version: python3
+-   repo: git://github.com/pre-commit/mirrors-pylint
+    rev: v2.3.0.dev1
+    hooks:
+    -   id: pylint
+        language_version: python3
+        args: [--max-line-length=120, --disable=F0401, --disable=R0801, --disable=C0326, --disable=C0411, --load-plugins=pylint_nusa_plugin, --enable=nusa-whitespace-checker]
+        # F0401: Unable to import a module. Due to how Pylint is being run.
+        # R0801: Similar lines in files. Run at least once without disabling to look at what is repeated.
+        # C0326: PEP-8 incorrect whitespace.
+        # C0411: Reorder imports is disabled
+        # pylint_nusa_plugin is a custom hook to ensure correct spacing within grouping operators (), [], and {}.

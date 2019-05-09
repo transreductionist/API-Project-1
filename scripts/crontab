@@ -1,0 +1,2 @@
+0 */12 * * * python -c "import jobs.braintree;jobs.braintree.manage_status_updates()"
+0 0 1 * * python -c "import jobs.full_database_dump;jobs.full_database_dump.get_cron_for_csv()"
