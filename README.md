@@ -1,3 +1,11 @@
+### This was built by me from the ground up. 
+- Requirements
+- Some of the database design.
+- ETL
+- Implementing cron and redis.
+- Testing
+- Integration
+
 # DONATEapi
 
 1. [Docker](#docker)
